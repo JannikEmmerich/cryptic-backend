@@ -7,4 +7,6 @@ COPY /server/build/install/server ./server/
 COPY /java-daemon/build/install/java-daemon ./java-daemon/
 #COPY Python files
 
-ENTRYPOINT ["docker-entrypoint.sh"]
+RUN ls -la
+
+ENTRYPOINT ["./docker-entrypoint.sh"]

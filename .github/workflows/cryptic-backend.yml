@@ -1,4 +1,4 @@
-name: Cryptic Backend Build
+name: Cryptic Backend
 on: [push]
 
 jobs:
@@ -16,5 +16,7 @@ jobs:
         run: ./gradlew installDist
       - name: Grant execute permission for docker-entrypoint.sh
         run: chmod +x docker/docker-entrypoint.sh
+      - name: Install dos2unis
+        run: apt install dos2unix
       - name: Build Docker Image
         run: docker build --no-cache --compress --pull -t "cryptic-backend" . -f "docker/Dockerfile"
