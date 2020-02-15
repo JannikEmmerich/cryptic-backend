@@ -26,11 +26,11 @@ jobs:
         id: vars
         run: echo ::set-output name=tag::$(echo ${GITHUB_REF:10})
       - name: Rename image to tagged image
-        run: docker tag cryptic-backend rubidiumdev/cryptic-backend:$
+        run: docker tag cryptic-backend rubidiumdev/cryptic-backend:${{steps.vars.outputs.tag}}
       - name: Push the tagged Docker image
-        run: docker push rubidiumdev/cryptic-backend:$
+        run: docker push rubidiumdev/cryptic-backend:${{steps.vars.outputs.tag}}
       - name: Rename image to latest image
-        run: docker tag rubidiumdev/cryptic-backend:$ rubidiumdev/cryptic-backend:latest
+        run: docker tag rubidiumdev/cryptic-backend:${{steps.vars.outputs.tag}} rubidiumdev/cryptic-backend:latest
       - name: Push the latest Docker image
         run: docker push rubidiumdev/cryptic-backend:latest
 
